@@ -28,33 +28,6 @@ universe=
   transpose()
 nm = names(universe)
 
-############################################################
-# GENERALIZATION I
-############################################################
-
-crossing(!!!rerun(length(nm), 0:1), 
-         .name_repair = make.names) %>% 
-  set_names(nm) %>%
-  mutate(x = 
-           pmap(., 
-                function(edu, income, SEI, ses4, sss) 
-                  list(universe$edu[edu + 1], 
-                       universe$income[income + 1], 
-                       universe$SEI[SEI + 1],
-                       universe$ses4[ses4 + 1], 
-                       universe$sss[sss + 1])) %>%
-           map(flatten)  %>% 
-           map(reduce, intersect)) %>% 
-  unnest(x) %>% 
-  left_join(complete_tables, by = c("x" = "geneSet"))  %>% 
-  knitr::kable()
-
-
-
-############################################################
-# GENERALIZATION II
-############################################################
- 
 
 helper = 
   function(P, universe){
@@ -81,7 +54,3 @@ T %>%
   unnest(x) %>% 
   left_join(complete_tables, by = c("x" = "geneSet"))  %>% 
   knitr::kable()
-
-
- 
-
