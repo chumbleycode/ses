@@ -32,8 +32,8 @@ get_venn_cell =
     
     # Logic: each venn cell has form ABCDE (interpreted as set intersection or
     # product of set characteristic functions). The collection of 2^D (here 2^5)
-    # such sets -  where every factor of ABCDE or it's a compliment are permitted
-    # independently - fill the 2^D cells of the Ven diagram.
+    # such set intersections -  where every factor of ABCDE or it's a compliment
+    # are permitted independently - fill the 2^D cells of the Ven diagram.
     
     # for each row in matrix of indexes P
     map(1:dim(P)[1], 
