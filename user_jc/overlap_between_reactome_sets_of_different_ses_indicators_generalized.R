@@ -29,15 +29,10 @@ universe=
 
 get_venn_cell = 
   function(P){ 
-    
-    # Logic: each venn cell has form ABCDE (interpreted as set intersection or
-    # product of set characteristic functions). The collection of 2^D (here 2^5)
-    # such set intersections -  where every factor of ABCDE or it's a compliment
-    # are permitted independently - fill the 2^D cells of the Ven diagram.
-    
-    # Now, get the intersection for each collection of "literals" of ABCDE (a "literal"
+     
+    # Get the intersection for each collection of "literals" of ABCDE (a "literal"
     # of A is either A or the complement of A, i.e. A') for each row in matrix
-    # of indexes P.
+    # of indexes P. These fill the 2^D cells of the Ven diagram.
     map(1:dim(P)[1], 
         # pluck the corresponding subset 
         ~ map2(names(universe),
