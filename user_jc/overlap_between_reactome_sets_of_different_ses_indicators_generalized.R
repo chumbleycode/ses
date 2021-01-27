@@ -21,17 +21,20 @@ gsea_genesetnames_complement <- map(gsea_genesetnames, ~setdiff(complete_tables$
 
 # the universe of reactome terms considered here is "all reactome sets deemed significantly related to at least one ses predictor"
 # there are then 2^5 intersections in the venn diagram (i.e. intersections over the 5 ses predictors, with each being the complement or not)
- 
+
 universe= 
   list(gsea_genesetnames_complement,
        gsea_genesetnames) %>% 
   transpose()
+nm = names(universe)
 
-crossing(edu =0:1, 
-         income =0:1, 
-         SEI =0:1,
-         ses4 =0:1,
-         sss =0:1) %>%
+############################################################
+# GENERALIZATION I
+############################################################
+
+crossing(!!!rerun(length(nm), 0:1), 
+         .name_repair = make.names) %>% 
+  set_names(nm) %>%
   mutate(x = 
            pmap(., 
                 function(edu, income, SEI, ses4, sss) 
@@ -45,4 +48,40 @@ crossing(edu =0:1,
   unnest(x) %>% 
   left_join(complete_tables, by = c("x" = "geneSet"))  %>% 
   knitr::kable()
+
+
+
+############################################################
+# GENERALIZATION II
+############################################################
+ 
+
+helper = 
+  function(P, universe){
+    nm = names(universe)
+    # for each row in matrix of indexes P
+    map(1:dim(P)[1], 
+        # pluck the corresponding subset 
+        ~ map2(nm,
+               P[.x, ], 
+               ~pluck(universe, .x, .y + 1)
+        ) 
+    ) %>% 
+      # interestion over all
+      map(reduce, intersect)
+  }
+
+T = 
+  crossing(!!!rerun(length(nm), 0:1), 
+           .name_repair = make.names) %>% 
+  set_names(nm) 
+
+T %>% 
+  mutate(x = helper(T, universe)) %>% 
+  unnest(x) %>% 
+  left_join(complete_tables, by = c("x" = "geneSet"))  %>% 
+  knitr::kable()
+
+
+ 
 
