@@ -35,7 +35,7 @@ get_venn_cell =
     # such set intersections -  where every factor of ABCDE or it's a compliment
     # are permitted independently - fill the 2^D cells of the Ven diagram.
     
-    # Now, get the intersection for each collection of literals of ABCDE (a literal
+    # Now, get the intersection for each collection of "literals" of ABCDE (a "literal"
     # of A is either A or the complement of A, i.e. A') for each row in matrix
     # of indexes P.
     map(1:dim(P)[1], 
