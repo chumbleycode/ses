@@ -27,7 +27,7 @@ universe=
        gsea_genesetnames) %>% 
   transpose() 
 
-helper = 
+get_venn_cell = 
   function(P){ 
     
     # for each row in matrix of indexes P
@@ -44,7 +44,7 @@ helper =
 
 crossing(!!!set_names(rerun(length(universe), 0:1), 
                       names(universe))) %>% 
-  mutate(geneSet = helper(.)) %>% 
+  mutate(geneSet = get_venn_cell(.)) %>% 
   unnest(geneSet) %>% 
   left_join(complete_tables, by = "geneSet")  %>% 
   knitr::kable()
