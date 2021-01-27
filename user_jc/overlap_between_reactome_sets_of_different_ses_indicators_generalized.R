@@ -25,32 +25,26 @@ gsea_genesetnames_complement <- map(gsea_genesetnames, ~setdiff(complete_tables$
 universe= 
   list(gsea_genesetnames_complement,
        gsea_genesetnames) %>% 
-  transpose()
-nm = names(universe)
-
+  transpose() 
 
 helper = 
-  function(P, universe){
-    nm = names(universe)
+  function(P){ 
+    
     # for each row in matrix of indexes P
     map(1:dim(P)[1], 
         # pluck the corresponding subset 
-        ~ map2(nm,
+        ~ map2(names(universe),
                P[.x, ], 
-               ~pluck(universe, .x, .y + 1)
+               ~ pluck(universe, .x, .y + 1)
         ) 
     ) %>% 
       # interestion over all
       map(reduce, intersect)
   }
 
-T = 
-  crossing(!!!rerun(length(nm), 0:1), 
-           .name_repair = make.names) %>% 
-  set_names(nm) 
-
-T %>% 
-  mutate(x = helper(T, universe)) %>% 
-  unnest(x) %>% 
-  left_join(complete_tables, by = c("x" = "geneSet"))  %>% 
+crossing(!!!set_names(rerun(length(universe), 0:1), 
+                      names(universe))) %>% 
+  mutate(geneSet = helper(.)) %>% 
+  unnest(geneSet) %>% 
+  left_join(complete_tables, by = "geneSet")  %>% 
   knitr::kable()
