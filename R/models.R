@@ -384,6 +384,11 @@ fit_m7 = function(datt, gene_set, rotate){
       
       datt_pca = bind_cols(datt, !!outcome := pca_rotated$scores[, outcome])
       
+      keep = datt_pca %>% complete.cases()
+      datt_pca = datt_pca[keep, ]
+      datt_pca = Filter(function(x) length(unique(x))!=1, datt_pca)
+      
+      
       (rec =
           str_c(outcome) %>%
           str_c(" ~ .") %>%
@@ -419,6 +424,7 @@ fit_m99 = function(datt, gene_set, mediator){
   gene_set = "gene_set"
   keep = datt %>% complete.cases()
   datt_keep = datt[keep,]
+  datt_keep = Filter(function(x) length(unique(x))!=1, datt_keep)
 
   
   if(mediator %>% str_detect("_gamma")) {
