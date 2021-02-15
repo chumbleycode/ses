@@ -1,5 +1,6 @@
-# very organised list of concise results
+### very organised list of concise results 
 
-aoeua [look here](2020.7.11_examples.html)
-
-aoeua [look here](/ses/2020.7.11_examples.html)
+# SES analyses
+ - Effect of [categorical race](/ses/2020.7.11_examples.html)
+ - Effect of [skin color](/ses/2020.7.11_examples.html)
+ - Conditional effect of skin color within race strata [look here](/ses/2020.7.11_examples.html)
