@@ -1,4 +1,4 @@
-### very organised list of concise results 
+### Very organised catalogue of concise results 
 
 # SES analyses
  - Effect of [categorical race](/ses/2020.7.11_examples.html)
