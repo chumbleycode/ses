@@ -1,6 +1,7 @@
-### Very organised catalogue of concise results 
 
-# Some current working papers 
+# Some current working papers
+
+A very organised catalogue of concise results: 
 
 # 1. Mikes race paper
 
