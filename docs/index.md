@@ -4,9 +4,7 @@
 A very organised catalogue of concise results: 
 
 # 1. Mikes race paper
-
-Treatments
-
+ 
  - [categorical race](/ses/user_wx/2020.7.11_examples.html)
    - 1-3 sentence summary (perhaps after discussion).
  
