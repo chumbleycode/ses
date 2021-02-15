@@ -48,6 +48,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 A very general way of describing what statistical tools do is: they separate the data (the variation we are interested in) into two parts, one that we are able to summarize (structure, explain, describe, and another part that is not (yet?) summarized (structured, explained, described), i.e. the remaining residual part of the variation. Generally analyzing the residuals produced by any statistical tool, provides us with a general approach to assess the quality and diagnose possible problems with the summary, as whenever you are able to discover any kind of systematic aspect (groups, outliers, any structure) you will know that the summary did not succeed in catching all systematic elements in the data.
 
+The methylome might be conceptualized as a clock which, in the absence of additional stressors such as obesity, dictates the age of the body. In that sense it can be understood as as the counterfactual age one would have without those stretches. But if the metal arm is a a dependable clock then surely it should unfold at the same rate over individuals which is contradicted by the evidence.
+
 [here](http://www.unige.ch/ses/sococ/cl////stat/action/analyse_residuals0.html?)
 Below we will consider residuals from regression; you should however be aware that the general principles can be applied to any statistical tool; no matter what tool you are using, a residual is always:
 
